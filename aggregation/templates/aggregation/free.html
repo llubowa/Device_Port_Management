@@ -1,0 +1,70 @@
+{% extends 'home/base.html'%}
+{% block content %}
+<form method="POST" action="{% url 'aggregation-free'%}">
+    {% csrf_token %}
+    
+    <h2>Aggregation Hubs</h2>
+    <h3> EDITING</h3>
+
+    <fieldset align="center">
+        <legend><h4>Declaring a port free</h4></legend>
+        
+        <div class="row" style="text-align:center">
+            
+            <label for="port to be freed"><b>Port:</b></label>
+            <input type="text" placeholder="eg 1/1/6" class="inputspace" name="free-port" id='free-port' style="width: 5" value="{{free_port|default:''}}" > 
+        
+            <label for="port to be used"><b>Aggregation Hub:</b></label>
+            <select name="free-hub" id="free-hub" class="selection" style="text-align:left">
+                <option value="">Choose</option>
+                <option value="UG-KLA-SAS-M-05_LuyanziCollege"{% if selected_option == "UG-KLA-SAS-M-05_LuyanziCollege" %}selected{% endif %}>Luyanzi</option>
+                <option value="UG-KLA-SAS-M-09_NkwanziCourts"{% if selected_option == "UG-KLA-SAS-M-09_NkwanziCourts" %}selected{% endif %}>Nkwanzi</option>
+                <option value="UG-KLA-SAS-M-15_KyambogoUni"{% if selected_option == "UG-KLA-SAS-M-15_KyambogoUni" %}selected{% endif %}>Kyambogo University</option>
+                <option value="UG-KLA-SAS-M-10_FramaHostel" {% if selected_option == "UG-KLA-SAS-M-10_FramaHostel" %}selected{% endif %}>Frama Hostel</option>
+                <option value="UG-KLA-SAS-M-04_TOTALBenKiwanuka"{% if selected_option == "UG-KLA-SAS-M-04_TOTALBenKiwanuka" %}selected{% endif %}>Total Ben Kiwanuka</option>
+                <option value="UG-KLA-SAS-M-07_TOTALKibuye"{% if selected_option == "UG-KLA-SAS-M-07_TOTALKibuye" %}selected{% endif %}>Total Kibuye</option>
+                <option value="UG-KLA-SAS-M-18_TOTALKajjansi"{% if selected_option == "UG-KLA-SAS-M-18_TOTALKajjansi" %}selected{% endif %}>Total Kajjansi</option>
+                <option value="UG-KLA-SAS-M-08_CraneBankENT"{% if selected_option == "UG-KLA-SAS-M-08_CraneBankENT" %}selected{% endif %}>Crane Bank Entebbe</option>
+                <option value="UG-KLA-SAS-M-01_TOTALKibuli"{% if selected_option == "UG-KLA-SAS-M-01_TOTALKibuli" %}selected{% endif %}>Total Kibuli</option>
+                <option value="UG-KLA-SAS-M-14_NdejjeUniversity"{% if selected_option == "UG-KLA-SAS-M-14_NdejjeUniversity" %}selected{% endif %}>Ndejje University</option>
+                <option value="UG-KLA-SAS-M-11_UBC"{% if selected_option == "UG-KLA-SAS-M-11_UBC" %}selected{% endif %}>UBC</option>
+                <option value="UG-KLA-SAS-M-06_MusanaPlaza"{% if selected_option == "UG-KLA-SAS-M-06_MusanaPlaza" %}selected{% endif %}>Musana Plaza</option>
+                <option value="UG-KLA-SAS-M-02_BugolobiFlats"{% if selected_option == "UG-KLA-SAS-M-02_BugolobiFlats" %}selected{% endif %}>Bugolobi Block 9</option>
+                <option value="UG-KLA-SAS-M-03_MusanaHouse"{% if selected_option == "UG-KLA-SAS-M-03_MusanaHouse" %}selected{% endif %}>Musana House</option>
+                <option value="UG-KLA-SAS-M-13_Boulevard"{% if selected_option == "UG-KLA-SAS-M-13_Boulevard" %}selected{% endif %}>Boulevard</option>
+                <option value="UG-KLA-SAS-M-19_TannexApts"{% if selected_option == "UG-KLA-SAS-M-19_TannexApts" %}selected{% endif %}>Tannex Apartments</option>
+                <option value="UG-KLA-SAS-M-16_MUBSBlock3"{% if selected_option == "UG-KLA-SAS-M-16_MUBSBlock3" %}selected{% endif %}>MUBS Block 3</option>
+            </select>
+        
+            <label for="cascaded port to be used"><b>Cascaded</b></label>
+            <select name="free-cascaded" id="free-cascaded" class="selection">
+                <option value="">None</option>
+                <option value="Cascaded1" {% if cascaded_option == "Cascaded1" %}selected{%endif%}>Cascaded 1</option>
+                <option value="Cascaded2"{%if cascaded_option == "Cascaded2" %}selected{%endif%}>Cascaded 2</option>
+                <option value="Cascaded3"{%if cascaded_option == "Cascaded3" %}selected{%endif%}>Cascaded 3</option>
+            </select>
+            <button type="submit "class="subfreebtn">Free</button>
+        </div>
+    </fieldset>
+
+    <br>
+
+    <div>
+        <table align="center">
+            <tr>
+                <td class="inputspace", style="width: 100;"><b>{{site}}</b></td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+
+    <div class="row" style="text-align: center">
+        <!-- Going back to the home page-->
+        <button type="button" class="searchbtn" ><a class="anchor" href="{% url 'home-home' %}"> Home </a></button>
+        <button type="button" class="searchbtn" ><a class="anchor" href="{% url 'aggregation-edit' %}">Edit</a></button>
+        <button type="button" class="searchbtn" ><a class="anchor" href="{% url 'aggregation-search' %}">Description</a></button>
+    </div>
+    
+</form>
+{% endblock content %}

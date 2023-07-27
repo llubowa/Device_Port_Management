@@ -1,0 +1,26 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block content %}
+   <form method="post" action="{% url 'home-home' %}">
+
+        <div class="row"style="text-align:center">
+            <div class="col"style="text-align:center">
+                <button type="button" class="searchbtn"style="width: 190px" ><a class="anchor" href="{% url 'home-home' %}"></a><b>Core Hubs</b></button> 
+            </div>
+        </div>
+        
+        <div class="row" style="text-align:center">
+            <div class="col"style="text-align:center">
+                <button type="button" class="searchbtn"style="width: 190px" ><a class="anchor" href="{% url 'aggregation-hubs' %}"><b>Aggregation Hubs</b></a></button>
+            </div>
+        </div>
+
+        <div class="row" style="text-align:center">
+            <div class="col"style="text-align:center">
+                <button type="button" class="searchbtn"style="width: 190px" ><a class="anchor" href="{% url 'home-login' %}"><b>Logout</b></a></button>
+            </div>
+        </div>
+        
+                    
+   </form>
+{% endblock content %}

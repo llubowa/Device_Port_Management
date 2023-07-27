@@ -1,0 +1,115 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<form method="post" action="{% url 'aggregation-search' %}">
+    {% csrf_token %}
+    
+    <h2>Aggregation Hubs</h2>
+    <h3> Port Description</h3>
+    
+        <br>
+        
+        <div class="row"style="text-align:center">
+            <div align = "center">
+                <label for="descrptn search"><b>Description:</b></label>
+                <input type="text" placeholder="Port Description"style="margin-right:10px" size="30" class="inputspace"  name="search_desc" id ="search_desc" value="{{search_desc|default:''}}" >
+                <label for="hubs"><b>Agg Hub:</b></label>
+                <select name="search_agg" id="search_agg" style="margin-right:10px" class="selection">
+                <option value="">None</option>
+                <option value="UG-KLA-SAS-M-05_LuyanziCollege"{% if selected_option == "UG-KLA-SAS-M-05_LuyanziCollege" %}selected{% endif %}>Luyanzi</option>
+                <option value="UG-KLA-SAS-M-09_NkwanziCourts"{% if selected_option == "UG-KLA-SAS-M-09_NkwanziCourts" %}selected{% endif %}>Nkwanzi</option>
+                <option value="UG-KLA-SAS-M-15_KyambogoUni"{% if selected_option == "UG-KLA-SAS-M-15_KyambogoUni" %}selected{% endif %}>Kyambogo University</option>
+                <option value="UG-KLA-SAS-M-10_FramaHostel" {% if selected_option == "UG-KLA-SAS-M-10_FramaHostel" %}selected{% endif %}>Frama Hostel</option>
+                <option value="UG-KLA-SAS-M-04_TOTALBenKiwanuka"{% if selected_option == "UG-KLA-SAS-M-04_TOTALBenKiwanuka" %}selected{% endif %}>Total Ben Kiwanuka</option>
+                <option value="UG-KLA-SAS-M-07_TOTALKibuye"{% if selected_option == "UG-KLA-SAS-M-07_TOTALKibuye" %}selected{% endif %}>Total Kibuye</option>
+                <option value="UG-KLA-SAS-M-18_TOTALKajjansi"{% if selected_option == "UG-KLA-SAS-M-18_TOTALKajjansi" %}selected{% endif %}>Total Kajjansi</option>
+                <option value="UG-KLA-SAS-M-08_CraneBankENT"{% if selected_option == "UG-KLA-SAS-M-08_CraneBankENT" %}selected{% endif %}>Crane Bank Entebbe</option>
+                <option value="UG-KLA-SAS-M-01_TOTALKibuli"{% if selected_option == "UG-KLA-SAS-M-01_TOTALKibuli" %}selected{% endif %}>Total Kibuli</option>
+                <option value="UG-KLA-SAS-M-14_NdejjeUniversity"{% if selected_option == "UG-KLA-SAS-M-14_NdejjeUniversity" %}selected{% endif %}>Ndejje University</option>
+                <option value="UG-KLA-SAS-M-11_UBC"{% if selected_option == "UG-KLA-SAS-M-11_UBC" %}selected{% endif %}>UBC</option>
+                <option value="UG-KLA-SAS-M-06_MusanaPlaza"{% if selected_option == "UG-KLA-SAS-M-06_MusanaPlaza" %}selected{% endif %}>Musana Plaza</option>
+                <option value="UG-KLA-SAS-M-02_BugolobiFlats"{% if selected_option == "UG-KLA-SAS-M-02_BugolobiFlats" %}selected{% endif %}>Bugolobi Block 9</option>
+                <option value="UG-KLA-SAS-M-03_MusanaHouse"{% if selected_option == "UG-KLA-SAS-M-03_MusanaHouse" %}selected{% endif %}>Musana House</option>
+                <option value="UG-KLA-SAS-M-13_Boulevard"{% if selected_option == "UG-KLA-SAS-M-13_Boulevard" %}selected{% endif %}>Boulevard</option>
+                <option value="UG-KLA-SAS-M-19_TannexApts"{% if selected_option == "UG-KLA-SAS-M-19_TannexApts" %}selected{% endif %}>Tannex Apartments</option>
+                <option value="UG-KLA-SAS-M-16_MUBSBlock3"{% if selected_option == "UG-KLA-SAS-M-16_MUBSBlock3" %}selected{% endif %}>MUBS Block 3</option>
+                </select>
+                <label for="port_type"><b>Casc:</b></label>
+                <select name="search_casc" id="search_casc" style="margin-right:10px" class="selection">
+                <option value="">None</option>
+                <option value="Cascaded1" {% if cascaded_option == "Cascaded1" %}selected{%endif%}>Cascaded 1</option>
+                <option value="Cascaded2"{%if cascaded_option == "Cascaded2" %}selected{%endif%}>Cascaded 2</option>
+                <option value="Cascaded3"{%if cascaded_option == "Cascaded3" %}selected{%endif%}>Cascaded 3</option>
+                </select>
+                <label for="descrptn search"><b>Port No:</b></label>
+                <input type="text" placeholder="e.g 1/2/6" style="margin-right:20px" size="10" class="inputspace" name="search_port" id="search_port" value="{{search_port|default:''}}" >
+                <input type="submit"class="searchbtn"></input>
+            </div>
+        </div>
+    
+
+    <!--Display window for the result site -->
+    <div class="display_hub">
+        <table align="center">
+            <tr>
+                <td class="inputspace", style="width: 100;"><b>{{site}}</b></td>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+
+    <!--Display window Search result -->
+    <div class="row">
+        <div class="container_display">
+            <table>
+                <thead>
+                    <td style="width: 110"><b>Site Name</b></td>
+                    <td><b>Port</b></td>
+                    <td><b>Status</b></td>
+                    <td><b>Description</b></td>
+                </thead>
+                {% for row in results %}
+                    <tr word-wrap="normal">
+                        <td width="80">{{row.ip_address}}</td>
+                        <td width="60">{{row.port}}</td>
+                        <td width="60">{{row.status}}</td>
+                        <td >{{row.description}}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+
+
+    <!--Display window for result count-->
+    <div class="row">
+        <div class="container_count">
+            
+            <table style="text-align:center">
+                <thead >
+                    <td style="color:black"><b>Count</b></td>
+                </thead>
+                <tr>
+                    <td style="text-align:center"><b>{{counter}}</b></td>
+                </tr>
+            </table>
+        
+        </div>
+        
+    </div>
+    
+    <!-- Going back to the Aggregation home page-->
+    
+    <div class="row" style="text-align:center">
+        <!-- Going back to the home page-->
+        <div align="center">
+            <button type="button" class="searchbtn" ><a class="anchor" href="{% url 'home-home' %}"> Home </a></button>
+            <button type="button" class="searchbtn" ><a class="anchor" href="{% url 'aggregation-hubs' %}">Device</a></button>
+            <button type="button" class="searchbtn" ><a class="anchor" href="{% url 'aggregation-edit' %}">Edit</a></button>
+        </div>
+    </div>
+         
+
+</form>
+{% endblock content %}

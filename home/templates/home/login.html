@@ -1,0 +1,48 @@
+{% extends "home/base.html" %}
+{% load static %}
+{% block content %}
+
+    <form method="POST" action="{% url 'home-login'%}" >
+        {% csrf_token %}
+        
+        <form class="modal-content animate"  action="/login" method="POST">
+            <!--<div>
+                <img src="{% static 'home/csquared.PNG' %}" class="center_logo" >
+            </div>-->
+            <!--href="{% static 'home/csquared.PNG' %}"-->
+        
+        
+            <div class="kontainer">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" id="username" class="pkont" required>
+        
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" id="password" class="pkont" required>
+                
+            <button type="submit" onclick="location.href='/home'">Login</button>
+           <!-- <label>
+                <input type="checkbox" checked="checked" name="remember"> Remember me
+            </label>
+            </div>
+        
+            <div class="container" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('Cancel').style.display='none'" class="cancelbtn">Cancel</button>
+            <span class="psw">Forgot <a href="#">password?</a></span>
+            </div> -->
+        </form>
+        
+        <script>
+        // Get the modal
+        var modal = document.getElementById('dog');
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        </script>
+        
+    </form> 
+
+    {% endblock content %}

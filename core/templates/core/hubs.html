@@ -1,0 +1,193 @@
+{% extends 'home/base.html' %}
+{% block content %}
+<form method="post" action="{% url 'core-hubs' %}">
+    {% csrf_token %}
+    <h2>Core Hubs</h2>
+    <fieldset  >
+        <div class="row"style="text-align:center">
+            <div class="col"style="text-align:center">
+                <label for="hubs"><b>Core Hub:</b></label>
+                <select name="CoreHub" id="CoreHub" class="selection">
+                    <option value="">Select</option>
+                    <option value="CSQ">CSQ</option>
+                    <option value="BUG">BUG</option>
+                    <option value="BUK">BUK</option>
+                    <option value="ENT">ENT</option>
+                    <option value="LUB">LUB</option>
+                    <option value="MAK">MAK</option>
+                    <option value="ROX">ROX</option>
+                </select>
+            </div>
+            
+        </div>
+        
+
+        <div class="row" style="text-align:center">
+            <div class="col"style="text-align:center">
+                <label for="port_type"><b>Port Type:</b></label>
+                <select name="port_type" id="port_type" class="selection">
+                    <option value="">Select</option>
+                    <option value="1G">1G</option>
+                    <option value="10G">10G</option>
+                    <option value="All">All</option>
+                </select>
+            </div>
+            
+        </div>
+
+        <div class="row"style="text-align:center">
+            <div class="col"style="text-align:center">
+                <label for="status"><b>Port Statu:</b></label>
+                <select name="status" id="status" class="selection">
+                    <option value="">Select</option>
+                    <option value="used">Used</option>
+                    <option value="free">Free</option>
+                    <option value="All">All</option>
+                </select>
+            </div>
+
+        </div>
+        
+        <div class="row" style="text-align:center">
+            <div class="col"style="text-align:center">
+                <button type="submit"class="searchbtn"style="width: 190px">OK</button>
+            </div>
+        </div>
+    </fieldset>
+    <br>
+    <fieldset align = "center">
+        <legend align ="center">Search by:</legend>
+        <div class="row"style="text-align:center">
+            <div " align="center">
+                <label for="descrptn search"><b>Description:</b></label>
+                <input type="text" placeholder="Port Description"style="margin-right:30px" style="width: 40px" class="inputspace"  name="description" id ="description" >
+                <label for="hubs"><b>Core Hub:</b></label>
+                <select name="CoreHub" id="CoreHub" style="margin-right:30px" class="selection">
+                    <option value="">Select</option>
+                    <option value="CSQ">CSQ</option>
+                    <option value="BUG">BUG</option>
+                    <option value="BUK">BUK</option>
+                    <option value="ENT">ENT</option>
+                    <option value="LUB">LUB</option>
+                    <option value="MAK">MAK</option>
+                    <option value="ROX">ROX</option>
+                </select>
+                <label for="descrptn search"><b>Port No:</b></label>
+                <input type="text" placeholder="e.g 1/2/6" style="margin-right:40px" size="10" class="inputspace" name="port" id="port">
+                <input type="submit"class="searchbtn"></input>
+            </div>
+        </div>
+    </fieldset>
+    
+    <div class="display_hub">
+        <table align="center">
+            <tr>
+                <td class="inputspace", width ="100"><b>{{hub_name}}</b></td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="row">
+        <div class="container_display">
+            <table>
+                <thead>
+                    <td width ="90"><b>IP address</b></td>
+                    <td><b>Port</b></td>
+                    <td><b>Status</b></td>
+                    <td><b>Description</b></td>
+                </thead>
+                {% for row in results %}
+                    
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="container_count">
+            
+            <table style="text-align:center">
+                <thead >
+                    <td style="color:black"><b>Count</b></td>
+                </thead>
+                <tr>
+                    <td style="text-align:center"><b>{{counter}}</b></td>
+                </tr>
+            </table>
+        </div>  
+    </div>
+
+    <h3>EDITING</h3>
+
+    <div class="row">
+        <div class="col-6">
+            <fieldset align = "center">
+                <h4>Dedicating a port</h4>
+                <div class="row">
+                    
+                    <div class="col" style="text-align:left">
+                        <label for="port to be used"><b>Port:</b></label>
+                        <input type="text" placeholder="eg 1/1/6" class="inputspace" name="port1" style="width:30" >
+                    </div>
+                    
+                    <div class="col" style="text-align:left">
+                        <label for="port to be used"><b>Hub:</b></label>
+                        <select name="CH1" id="CH1" class="selection">
+                            <option value="" style="color:black">Choose</option>
+                            <option value="CSQ">CSQ</option>
+                            <option value="BUG">BUG</option>
+                            <option value="BUK">BUK</option>
+                            <option value="ENT">ENT</option>
+                            <option value="LUB">LUB</option>
+                            <option value="MAK">MAK</option>
+                            <option value="ROX">ROX</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row"style="text-align:left">
+                    <div class="col">
+                        <label for="port to be used"><b>Description:</b></label>
+                        <input type="text" placeholder="Add port description" size="5"class="inputspace" name="edit_description" style="width:70%" >
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-6"style="text-align:center">
+            <h4>Declaring the port free</h4>
+            <div class="row"style="text-align:center">
+                <div class="col">
+                    <label for="port to be freed"><b>Port:</b></label>
+                    <input type="text" placeholder="eg 1/1/6" class="inputspace" name="port_input" style="width: 20%;" > 
+                </div>
+            <div class="row" style="text-align:center">
+                <div class="col">
+                    <label for="port to be used"><b>Hub:</b></label>
+                    <select name="CH2" id="CH2" class="selection" style="text-align:left">
+                        <option value="" style="color:black">Choose</option>
+                        <option value="CSQ">CSQ</option>
+                        <option value="BUG">BUG</option>
+                        <option value="BUK">BUK</option>
+                        <option value="ENT">ENT</option>
+                        <option value="LUB">LUB</option>
+                        <option value="MAK">MAK</option>
+                        <option value="ROX">ROX</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"style="text-align:center">
+            <button type="submit "class="subfreebtn">submit</button>
+        </div>
+        <div class="col"style="text-align:center">
+            <button type="submit "class="subfreebtn">Free</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col"style="text-align:center">
+            <button type="button" class="searchbtn" onclick="location.href='/'">Back</button>
+        </div>
+    </div>
+</form>
+{% endblock content %}
