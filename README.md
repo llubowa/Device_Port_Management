@@ -1,4 +1,9 @@
 # Device Port Management
+
+![Screenshot 2024-11-10 103249](https://github.com/user-attachments/assets/8393c811-47c2-42fc-9a2b-7e9de30a9bd7)
+
+
+
 Application is for managing ports on network devices
 
 The network devices are core hubs and aggregation hubs.
