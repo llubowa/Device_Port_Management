@@ -12,3 +12,5 @@ The application manages the description of the ports on each device in the follo
 
 This application is built with python using Django framework. MySql is the database used for this project.
 Currently the fully buit up app/section is the one which deals with aggregation hubs
+Here is the link to the demonstration video. 
+https://drive.google.com/file/d/1h3V0rqyjnp7JAbSDDQXXnjW9jw4BxI21/view?usp=sharing
