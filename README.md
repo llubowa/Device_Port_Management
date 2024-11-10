@@ -1,4 +1,4 @@
-# Port-status-app
+# Device Port Management
 Application is for managing ports on network devices
 
 The network devices are core hubs and aggregation hubs.
